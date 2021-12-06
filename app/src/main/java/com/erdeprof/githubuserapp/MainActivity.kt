@@ -2,6 +2,7 @@ package com.erdeprof.githubuserapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -39,5 +40,15 @@ class MainActivity : AppCompatActivity() {
         rvUsers.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = ListUserAdapter(list)
         rvUsers.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                showSelectedUser(data)
+            }
+        })
+    }
+
+    private fun showSelectedUser(user: User) {
+        Toast.makeText(this, "Kamu memilih " + user.name, Toast.LENGTH_SHORT).show()
     }
 }

@@ -5,9 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgAvatar: ImageView = itemView.findViewById(R.id.img_item_avatar)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
@@ -26,7 +33,15 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
         holder.tvName.text = name
         holder.tvFollower.text = follower
         holder.tvFollowing.text = following
+        /*holder.itemView.setOnClickListener {
+            Toast.makeText(holder.itemView.context, "Kamu memilih " + listUser[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+        }*/
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }
     }
 
     override fun getItemCount(): Int = listUser.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
+    }
 }
