@@ -1,5 +1,6 @@
 package com.erdeprof.githubuserapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -27,9 +28,22 @@ class MainActivity : AppCompatActivity() {
         val dataFollower = resources.getStringArray(R.array.followers)
         val dataFollowing = resources.getStringArray(R.array.following)
         val dataAvatar = resources.obtainTypedArray(R.array.avatar)
+        val dataUsername = resources.getStringArray(R.array.username)
+        val dataLocation = resources.getStringArray(R.array.location)
+        val dataRepository = resources.getStringArray(R.array.repository)
+        val dataCompany = resources.getStringArray(R.array.company)
         val listUser = ArrayList<User>()
         for (i in dataName.indices) {
-            val user = User(dataName[i], dataFollower[i], dataFollowing[i], dataAvatar.getResourceId(i, -1))
+            val user = User(
+                dataName[i],
+                dataFollower[i].toInt(),
+                dataFollowing[i].toInt(),
+                dataAvatar.getResourceId(i, -1),
+                dataUsername[i],
+                dataLocation[i],
+                dataRepository[i].toInt(),
+                dataCompany[i]
+            )
             listUser.add(user)
         }
 
@@ -49,6 +63,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: User) {
-        Toast.makeText(this, "Kamu memilih " + user.name, Toast.LENGTH_SHORT).show()
+        val activityDetailUser = Intent(this@MainActivity, DetailUserActivity::class.java)
+        activityDetailUser.putExtra(DetailUserActivity.EXTRA_USER, user)
+        startActivity(activityDetailUser)
     }
 }

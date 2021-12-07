@@ -1,0 +1,39 @@
+package com.erdeprof.githubuserapp
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+
+class DetailUserActivity : AppCompatActivity() {
+    companion object {
+        const val EXTRA_USER = "extra_user"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setTitle("Detail User")
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail_user)
+
+        val tvAvatar: ImageView = findViewById(R.id.img_avatar)
+        val tvName: TextView = findViewById(R.id.tv_name)
+        val tvUsername: TextView = findViewById(R.id.tv_username)
+        val tvRepository: TextView = findViewById(R.id.tv_repository_value)
+        val tvFollower: TextView = findViewById(R.id.tv_follower_value)
+        val tvFollowing: TextView = findViewById(R.id.tv_following_value)
+        val tvLocation: TextView = findViewById(R.id.tv_location_value)
+        val tvCompany: TextView = findViewById(R.id.tv_company_value)
+
+        val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
+
+        tvAvatar.setImageResource(user.avatar)
+        tvName.text = user.name
+        tvUsername.text = "@" + user.username
+        tvRepository.text = user.repository.toString()
+        tvFollower.text = user.follower.toString()
+        tvFollowing.text = user.following.toString()
+        tvLocation.text = user.location
+        tvCompany.text = user.company
+    }
+}

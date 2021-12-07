@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailUserActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailUserActivity">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.33"
+            tools:src="@tools:sample/avatars"
+            app:civ_border_color="@color/orange_dark"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="@color/gray_light"
+            app:civ_shadow_radius="10"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/img_avatar"
+            app:layout_constraintStart_toStartOf="@+id/img_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/img_avatar"
+            tools:text="@string/my_name"
+            style="@style/TextContent"/>
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/img_avatar"
+            app:layout_constraintStart_toStartOf="@+id/img_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="@string/username"
+            style="@style/TextContent.Small"/>
+
+        <TextView
+            android:id="@+id/tv_follower_text"
+            style="@style/TextTitle.Field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/follower_text"
+            app:layout_constraintEnd_toEndOf="@+id/img_avatar"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@+id/img_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+        <TextView
+            android:id="@+id/tv_following_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username"
+            android:text="@string/following_text"
+            style="@style/TextTitle.Field"/>
+
+        <TextView
+            android:id="@+id/tv_repository_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username"
+            android:text="@string/repository_text"
+            style="@style/TextTitle.Field"/>
+
+        <TextView
+            android:id="@+id/tv_follower_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_follower_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_follower_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_follower_text"
+            tools:text="@string/follower_value"
+            style="@style/TextTitle.Value"/>
+
+        <TextView
+            android:id="@+id/tv_following_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_following_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_following_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_following_text"
+            tools:text="@string/following_value"
+            style="@style/TextTitle.Value"/>
+
+        <TextView
+            android:id="@+id/tv_repository_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_repository_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_repository_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_repository_text"
+            tools:text="@string/repository_value"
+            style="@style/TextTitle.Value"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="357dp" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_deskripsi_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline3"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

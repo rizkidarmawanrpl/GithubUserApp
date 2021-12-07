@@ -31,11 +31,11 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
         val (name, follower, following, avatar) = listUser[position]
         holder.imgAvatar.setImageResource(avatar)
         holder.tvName.text = name
-        holder.tvFollower.text = follower
-        holder.tvFollowing.text = following
-        /*holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Kamu memilih " + listUser[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
-        }*/
+        holder.tvFollower.text = follower.toString()
+        holder.tvFollowing.text = following.toString()
+//        holder.itemView.setOnClickListener {
+//            Toast.makeText(holder.itemView.context, "Kamu memilih " + listUser[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+//        }
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }
     }
 

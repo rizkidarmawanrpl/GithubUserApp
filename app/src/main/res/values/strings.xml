@@ -20,13 +20,21 @@
     <string name="battery">Battery</string>
     <string name="seller">Dijual oleh</string>
     <string name="my_name">Jake Wharton</string>
+    <string name="username">@jake</string>
     <string name="buy">Beli</string>
     <string name="dummy_value">$735</string>
     <string name="dummy_photos">6 photos</string>
     <string name="follower_text">Follower</string>
     <string name="following_text">Following</string>
+    <string name="repository_text">Repository</string>
     <string name="follower_value">0</string>
     <string name="following_value">0</string>
+    <string name="repository_value">0</string>
+    <string name="location_text">Lokasi</string>
+    <string name="location_value">Pittsburgh, PA, USA</string>
+    <string name="company_text">Perusahaan</string>
+    <string name="company_value">Google, Inc.</string>
+    <string name="image_splashscreen">image_splashscreen</string>
 
     <!-- Other string resources-->
 
