@@ -37,6 +37,8 @@
             app:layout_constraintStart_toStartOf="@+id/img_avatar"
             app:layout_constraintTop_toBottomOf="@+id/img_avatar"
             tools:text="@string/my_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
             style="@style/TextContent"/>
 
         <TextView
