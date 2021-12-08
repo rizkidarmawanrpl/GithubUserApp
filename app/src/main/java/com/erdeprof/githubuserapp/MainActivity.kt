@@ -1,12 +1,16 @@
 package com.erdeprof.githubuserapp
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.SearchView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
@@ -20,6 +24,24 @@ class MainActivity : AppCompatActivity() {
         rvUsers.setHasFixedSize(true)
 
         list.addAll(listUsers)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView: SearchView = findViewById(R.id.input_username)
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.queryHint = resources.getString(R.string.search_hint)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                Toast.makeText(this@MainActivity, p0, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                Toast.makeText(this@MainActivity, p0, Toast.LENGTH_SHORT).show()
+                return true
+            }
+        })
+
         showRecyclerList()
     }
 
