@@ -1,7 +1,10 @@
 package com.erdeprof.githubuserapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -11,10 +14,10 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTitle("Detail User")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_user)
+
+        setTitle("Detail User")
 
         val tvAvatar: ImageView = findViewById(R.id.img_avatar)
         val tvName: TextView = findViewById(R.id.tv_name)
@@ -35,5 +38,22 @@ class DetailUserActivity : AppCompatActivity() {
         tvFollowing.text = user.following.toString()
         tvLocation.text = user.location
         tvCompany.text = user.company
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                val i = Intent(this, MenuActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
     }
 }

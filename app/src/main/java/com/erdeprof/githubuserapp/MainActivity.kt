@@ -3,6 +3,8 @@ package com.erdeprof.githubuserapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -65,5 +67,22 @@ class MainActivity : AppCompatActivity() {
         val activityDetailUser = Intent(this@MainActivity, DetailUserActivity::class.java)
         activityDetailUser.putExtra(DetailUserActivity.EXTRA_USER, user)
         startActivity(activityDetailUser)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                val i = Intent(this, MenuActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
     }
 }

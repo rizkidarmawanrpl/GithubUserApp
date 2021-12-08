@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Github User`s</string>
+    <string name="menu_settings">Menu 1</string>
+    <string name="menu_settings_activity">Ini adalah menu settings</string>
     <string name="my_name">Jake Wharton</string>
     <string name="username">@JakeWharton</string>
     <string name="follower_text">Follower</string>
