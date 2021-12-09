@@ -8,6 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgAvatar: ImageView = itemView.findViewById(R.id.img_item_avatar)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
@@ -24,9 +30,14 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
         val (name, follower, following, avatar) = listUser[position]
         holder.imgAvatar.setImageResource(avatar)
         holder.tvName.text = name
-        holder.tvFollower.text = follower
-        holder.tvFollowing.text = following
+        holder.tvFollower.text = follower.toString()
+        holder.tvFollowing.text = following.toString()
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }
     }
 
     override fun getItemCount(): Int = listUser.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
+    }
 }
