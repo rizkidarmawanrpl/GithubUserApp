@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         list.addAll(listUsers)
 
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        /*val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView: SearchView = findViewById(R.id.input_username)
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, p0, Toast.LENGTH_SHORT).show()
                 return true
             }
-        })
+        })*/
 
         showRecyclerList()
     }

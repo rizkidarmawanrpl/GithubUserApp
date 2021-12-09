@@ -7,10 +7,20 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.StringRes
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_USER = "extra_user"
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_follower,
+            R.string.tab_text_following
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +48,16 @@ class DetailUserActivity : AppCompatActivity() {
         tvFollowing.text = user.following.toString()
         tvLocation.text = user.location
         tvCompany.text = user.company
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+
+        supportActionBar?.elevation = 0f
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
