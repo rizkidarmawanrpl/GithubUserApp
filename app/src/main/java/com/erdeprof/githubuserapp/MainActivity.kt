@@ -143,6 +143,7 @@ class MainActivity : AppCompatActivity() {
             listUser.add(user)
         }
 
+        list.clear()
         list.addAll(listUser)
         showRecyclerList()
     }
