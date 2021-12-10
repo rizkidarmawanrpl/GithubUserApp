@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -40,7 +41,10 @@ class DetailUserActivity : AppCompatActivity() {
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
 
-        tvAvatar.setImageResource(user.avatar)
+        // tvAvatar.setImageResource(user.avatar)
+        Glide.with(this@DetailUserActivity)
+            .load(user.avatar)
+            .into(tvAvatar)
         tvName.text = user.name
         tvUsername.text = "@" + user.username
         tvRepository.text = user.repository.toString()

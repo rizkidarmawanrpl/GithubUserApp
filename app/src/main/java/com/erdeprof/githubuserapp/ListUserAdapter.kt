@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -28,7 +29,10 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (name, follower, following, avatar) = listUser[position]
-        holder.imgAvatar.setImageResource(avatar)
+        // holder.imgAvatar.setImageResource(avatar)
+        Glide.with(holder.itemView.context)
+            .load(avatar)
+            .into(holder.imgAvatar)
         holder.tvName.text = name
         holder.tvFollower.text = follower.toString()
         holder.tvFollowing.text = following.toString()

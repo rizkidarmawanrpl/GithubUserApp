@@ -20,6 +20,8 @@ import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
@@ -39,14 +41,13 @@ class MainActivity : AppCompatActivity() {
         val inputUsername: TextInputEditText = findViewById(R.id.input_username)
         inputUsername.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                // Toast.makeText(this@MainActivity, p0, Toast.LENGTH_SHORT).show()
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchUser(p0.toString())
+                getSearchUser(p0.toString())
             }
         })
 
@@ -71,8 +72,8 @@ class MainActivity : AppCompatActivity() {
         showRecyclerList()*/
     }
 
-    /*private val listUsers: ArrayList<User>
-    get() {
+    private val listUsers = ArrayList<User>()
+    /*get() {
         val dataName = resources.getStringArray(R.array.name)
         val dataFollower = resources.getStringArray(R.array.followers)
         val dataFollowing = resources.getStringArray(R.array.following)
@@ -99,53 +100,86 @@ class MainActivity : AppCompatActivity() {
         return listUser;
     }*/
 
-    private fun searchUser(username: String) {
+    private fun getSearchUser(username: String) {
         showLoading(true)
-        val client = ApiConfig.getApiService().getSearchUsers(username)
-        client.enqueue(object : Callback<UserSearchResponse> {
+
+        if (username?.length!! >= 8) {
+            val client = ApiConfig.getApiService().getSearchUsers(username)
+            client.enqueue(object : Callback<UserSearchResponse> {
+                override fun onResponse(
+                    call: Call<UserSearchResponse>,
+                    response: Response<UserSearchResponse>
+                ) {
+                    showLoading(false)
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            setUserData(responseBody.items)
+                        }
+                    } else {
+                        Log.e(TAG, "onFailure: ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<UserSearchResponse>, t: Throwable) {
+                    showLoading(false)
+                    Log.e(TAG, "onFailure: ${t.message}")
+                }
+            })
+        }
+    }
+
+    private fun getDetailUser(username: String) {
+        val client = ApiConfig.getApiService().getDetailUsers(username)
+        client.enqueue(object : Callback<UserDetailResponse> {
             override fun onResponse(
-                call: Call<UserSearchResponse>,
-                response: Response<UserSearchResponse>
+                call: Call<UserDetailResponse>,
+                response: Response<UserDetailResponse>
             ) {
-                showLoading(false)
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseBody = response.body()
-                    if (responseBody != null) {
-                        setUserData(responseBody.items)
+                    if(responseBody != null) {
+                        setDetailUserData(responseBody)
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<UserSearchResponse>, t: Throwable) {
-                showLoading(false)
+            override fun onFailure(call: Call<UserDetailResponse>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
     }
 
     private fun setUserData(itemsitem: List<ItemsItem>) {
-        val dataAvatar = resources.obtainTypedArray(R.array.avatar)
-        val listUser = ArrayList<User>()
-        val i = 1;
+        // val dataAvatar = resources.obtainTypedArray(R.array.avatar)
+        // val listUser = ArrayList<User>()
+        // listUsers.clear()
+
         for (item in itemsitem) {
-            val user = User(
-                item.login,
-                0,
-                0,
-                dataAvatar.getResourceId(i, -1),
-                item.login,
-                "-",
-                0,
-                "-"
-            )
-            listUser.add(user)
+            getDetailUser(item.login)
         }
 
         list.clear()
-        list.addAll(listUser)
+        list.addAll(listUsers)
         showRecyclerList()
+        listUsers.clear()
+    }
+
+    private fun setDetailUserData(detail: UserDetailResponse) {
+        val user = User(
+            detail.name,
+            detail.followers,
+            detail.following,
+            detail.avatarUrl,
+            detail.login,
+            detail.location,
+            detail.publicRepos,
+            detail.company
+        )
+
+        listUsers.add(user)
     }
 
     private fun showRecyclerList() {
