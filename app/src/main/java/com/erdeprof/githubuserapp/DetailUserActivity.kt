@@ -53,7 +53,7 @@ class DetailUserActivity : AppCompatActivity() {
         tvLocation.text = user.location
         tvCompany.text = user.company
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, user.username.toString())
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
