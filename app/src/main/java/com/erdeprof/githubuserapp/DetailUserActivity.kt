@@ -8,16 +8,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.viewpager2.widget.ViewPager2
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayout
+import com.erdeprof.githubuserapp.databinding.ActivityDetailUserBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailUserActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailUserBinding
+
     companion object {
         const val EXTRA_USER = "extra_user"
         private const val TAG = "DetailUserActivity"
@@ -31,45 +34,38 @@ class DetailUserActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_user)
+
+        binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        supportActionBar?.elevation = 0f
 
         setTitle("Detail User")
 
-        /*val tvAvatar: ImageView = findViewById(R.id.img_avatar)
-        val tvName: TextView = findViewById(R.id.tv_name)
-        val tvUsername: TextView = findViewById(R.id.tv_username)
-        val tvRepository: TextView = findViewById(R.id.tv_repository_value)
-        val tvFollower: TextView = findViewById(R.id.tv_follower_value)
-        val tvFollowing: TextView = findViewById(R.id.tv_following_value)
-        val tvLocation: TextView = findViewById(R.id.tv_location_value)
-        val tvCompany: TextView = findViewById(R.id.tv_company_value)*/
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+        mainViewModel.userDetail.observe(this, { userDetail ->
+            setDetailUserData(userDetail)
+        })
+
+        mainViewModel.message.observe(this, {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            }
+        })
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
         val username = user.username.toString()
 
-        getDetailUser(username)
-
-        // tvAvatar.setImageResource(user.avatar)
-        /*Glide.with(this@DetailUserActivity)
-            .load(user.avatar)
-            .into(tvAvatar)
-        tvName.text = user.name
-        tvUsername.text = "@" + user.username
-        tvRepository.text = user.repository.toString()
-        tvFollower.text = user.follower.toString()
-        tvFollowing.text = user.following.toString()
-        tvLocation.text = user.location
-        tvCompany.text = user.company*/
+        mainViewModel.getDetailUser(username)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, username)
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        val viewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
+        val tabs = binding.tabs
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
-
-        supportActionBar?.elevation = 0f
     }
 
     private fun getDetailUser(username: String) {
@@ -85,11 +81,13 @@ class DetailUserActivity : AppCompatActivity() {
                         setDetailUserData(responseBody)
                     }
                 } else {
+                    Toast.makeText(this@DetailUserActivity, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<UserDetailResponse>, t: Throwable) {
+                Toast.makeText(this@DetailUserActivity, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure2: ${t.message}")
             }
         })

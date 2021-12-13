@@ -11,11 +11,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
+import com.erdeprof.githubuserapp.databinding.ActivityMainBinding
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Response
@@ -24,6 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private lateinit var rvUsers: RecyclerView
     private val list = ArrayList<User>()
 
@@ -33,13 +37,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        rvUsers = findViewById(R.id.rv_users)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // setContentView(R.layout.activity_main)
+
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+        // rvUsers = findViewById(R.id.rv_users)
+        rvUsers = binding.rvUsers
         rvUsers.setHasFixedSize(true)
 
-        val inputUsername: TextInputEditText = findViewById(R.id.input_username)
-        inputUsername.addTextChangedListener(object : TextWatcher {
+        mainViewModel.itemsItem.observe(this, { itemsItem ->
+            setUserData(itemsItem)
+        })
+
+        mainViewModel.isLoading.observe(this, {
+            showLoading(it)
+        })
+
+        mainViewModel.message.observe(this, {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            }
+        })
+
+        // val inputUsername: TextInputEditText = findViewById(R.id.input_username)
+        binding.inputUsername.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -47,7 +71,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                getSearchUser(p0.toString())
+                // getSearchUser(p0.toString())
+                mainViewModel.getSearchUser(p0.toString())
             }
         })
 
@@ -117,12 +142,14 @@ class MainActivity : AppCompatActivity() {
                             setUserData(responseBody.items)
                         }
                     } else {
+                        Toast.makeText(this@MainActivity, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
                 }
 
                 override fun onFailure(call: Call<UserSearchResponse>, t: Throwable) {
                     showLoading(false)
+                    Toast.makeText(this@MainActivity, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onFailure: ${t.message}")
                 }
             })
@@ -230,7 +257,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    /*private fun showLoading(isLoading: Boolean) {
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
 
         if (isLoading) {
@@ -238,5 +265,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             progressBar.visibility = View.GONE
         }
+    }*/
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

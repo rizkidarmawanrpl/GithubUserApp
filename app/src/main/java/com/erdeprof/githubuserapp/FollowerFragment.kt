@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
@@ -59,15 +61,35 @@ class FollowerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rvFollower = view.findViewById(R.id.rv_follower)
-        // rvFollower.setHasFixedSize(true)
+        rvFollower.setHasFixedSize(true)
+
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+        mainViewModel.isLoading.observe(viewLifecycleOwner, {
+            showLoading(view, it)
+        })
+
+        mainViewModel.userFollower.observe(viewLifecycleOwner, { userFollower ->
+            setUserData(userFollower)
+        })
+
+        mainViewModel.userFollowing.observe(viewLifecycleOwner, { userFollowing ->
+            setUserData(userFollowing)
+        })
+
+        mainViewModel.message.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            }
+        })
 
         val index = arguments?.getInt(ARG_SECTION_NUMBER, 0)
-        val username = arguments?.getString(ARG_SECTION_USERNAME)
+        val username = arguments?.getString(ARG_SECTION_USERNAME).toString()
 
         when (index) {
-            0 -> getFollowerUser(view, username.toString())
-            1 -> getFollowingUser(view, username.toString())
-            else -> getFollowingUser(view, username.toString())
+            0 -> mainViewModel.getFollowerUser(username) // getFollowerUser(view, username.toString())
+            1 -> mainViewModel.getFollowingUser(username)
+            else -> mainViewModel.getFollowerUser(username)
         }
 
         /*list.addAll(listUsers)
@@ -88,14 +110,15 @@ class FollowerFragment : Fragment() {
                     if (responseBody != null) {
                         setUserData(responseBody)
                     }
-                    // Log.e(TAG, "onSuccess: OK OK ${response}")
                 } else {
+                    Toast.makeText(context, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<UserFollowerResponseItem>>, t: Throwable) {
                 showLoading(view, false)
+                Toast.makeText(context, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure2: ${t.message}")
             }
         })
@@ -115,14 +138,15 @@ class FollowerFragment : Fragment() {
                     if (responseBody != null) {
                         setUserData(responseBody)
                     }
-                    // Log.e(TAG, "onSuccess: OK OK ${response}")
                 } else {
+                    Toast.makeText(context, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<UserFollowerResponseItem>>, t: Throwable) {
                 showLoading(view, false)
+                Toast.makeText(context, "Data gagal dimuat!", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure2: ${t.message}")
             }
         })
