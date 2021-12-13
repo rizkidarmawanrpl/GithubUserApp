@@ -129,7 +129,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDetailUser(username: String) {
+    private fun setUserData(itemsitem: List<ItemsItem>) {
+        // val dataAvatar = resources.obtainTypedArray(R.array.avatar)
+        val listUser = ArrayList<User>()
+        // listUsers.clear()
+
+        for (item in itemsitem) {
+            val user = User(
+                // detail.name,
+                // detail.followers,
+                // detail.following,
+                item.avatarUrl,
+                item.login,
+                // detail.location,
+                // detail.publicRepos,
+                // detail.company
+            )
+
+            listUser.add(user)
+            // getDetailUser(item.login)
+        }
+
+        list.clear()
+        list.addAll(listUser)
+        showRecyclerList()
+        // listUsers.clear()
+    }
+
+    /*private fun getDetailUser(username: String) {
         val client = ApiConfig.getApiService().getDetailUsers(username)
         client.enqueue(object : Callback<UserDetailResponse> {
             override fun onResponse(
@@ -150,37 +177,22 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
-    }
+    }*/
 
-    private fun setUserData(itemsitem: List<ItemsItem>) {
-        // val dataAvatar = resources.obtainTypedArray(R.array.avatar)
-        // val listUser = ArrayList<User>()
-        // listUsers.clear()
-
-        for (item in itemsitem) {
-            getDetailUser(item.login)
-        }
-
-        list.clear()
-        list.addAll(listUsers)
-        showRecyclerList()
-        listUsers.clear()
-    }
-
-    private fun setDetailUserData(detail: UserDetailResponse) {
+    /*private fun setDetailUserData(detail: UserDetailResponse) {
         val user = User(
-            detail.name,
-            detail.followers,
-            detail.following,
+            // detail.name,
+            // detail.followers,
+            // detail.following,
             detail.avatarUrl,
             detail.login,
-            detail.location,
-            detail.publicRepos,
-            detail.company
+            // detail.location,
+            // detail.publicRepos,
+            // detail.company
         )
 
         listUsers.add(user)
-    }
+    }*/
 
     private fun showRecyclerList() {
         rvUsers.layoutManager = LinearLayoutManager(this)

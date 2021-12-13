@@ -18,8 +18,8 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgAvatar: ImageView = itemView.findViewById(R.id.img_item_avatar)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
-        var tvFollower: TextView = itemView.findViewById(R.id.tv_item_follower_value)
-        var tvFollowing: TextView = itemView.findViewById(R.id.tv_item_following_value)
+        /*var tvFollower: TextView = itemView.findViewById(R.id.tv_item_follower_value)
+        var tvFollowing: TextView = itemView.findViewById(R.id.tv_item_following_value)*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -28,14 +28,14 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (name, follower, following, avatar) = listUser[position]
+        val (avatar, username) = listUser[position]
         // holder.imgAvatar.setImageResource(avatar)
         Glide.with(holder.itemView.context)
             .load(avatar)
             .into(holder.imgAvatar)
-        holder.tvName.text = name
-        holder.tvFollower.text = follower.toString()
-        holder.tvFollowing.text = following.toString()
+        holder.tvName.text = username
+        /*holder.tvFollower.text = follower.toString()
+        holder.tvFollowing.text = following.toString()*/
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }
     }
 
