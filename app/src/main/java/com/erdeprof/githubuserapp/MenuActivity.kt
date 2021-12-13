@@ -8,6 +8,6 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        setTitle("Settings")
+        setTitle(R.string.app_name_settings)
     }
 }

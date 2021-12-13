@@ -1,8 +1,6 @@
 package com.erdeprof.githubuserapp
 
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,13 +29,9 @@ class MainViewModel : ViewModel() {
     val message : LiveData<Event<String>>
         get() = statusMessage
 
-    companion object {
-        private const val TAG = "MainViewModel"
-    }
-
     fun getSearchUser(username: String) {
         _isLoading.value = true
-        if (username?.length!! >= 8) {
+        if (username?.length!! >= 4) {
             val client = ApiConfig.getApiService().getSearchUsers(username)
             client.enqueue(object : Callback<UserSearchResponse> {
                 override fun onResponse(
@@ -152,5 +146,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure2: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "MainViewModel"
     }
 }

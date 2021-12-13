@@ -16,6 +16,10 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             finish()
-        }, 3000)
+        }, SECONDS)
+    }
+
+    companion object {
+        private const val SECONDS: Long = 3000
     }
 }
