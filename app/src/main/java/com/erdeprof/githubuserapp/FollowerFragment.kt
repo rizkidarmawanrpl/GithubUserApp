@@ -19,6 +19,33 @@ class FollowerFragment : Fragment() {
     private lateinit var rvFollower: RecyclerView
     private val listUsers = ArrayList<User>()
     private val list = ArrayList<User>()
+    /*private val listUsers : ArrayList<User>
+        get() {
+            val dataName = resources.getStringArray(R.array.name)
+            val dataFollower = resources.getStringArray(R.array.followers)
+            val dataFollowing = resources.getStringArray(R.array.following)
+            val dataAvatar = resources.obtainTypedArray(R.array.avatar)
+            val dataUsername = resources.getStringArray(R.array.username)
+            val dataLocation = resources.getStringArray(R.array.location)
+            val dataRepository = resources.getStringArray(R.array.repository)
+            val dataCompany = resources.getStringArray(R.array.company)
+            val listUser = ArrayList<User>()
+            for (i in dataName.indices) {
+                val user = User(
+                    dataName[i],
+                    dataFollower[i].toInt(),
+                    dataFollowing[i].toInt(),
+                    "https://avatars.githubusercontent.com/u/4090245?v=4",
+                    dataUsername[i],
+                    dataLocation[i],
+                    dataRepository[i].toInt(),
+                    dataCompany[i]
+                )
+                listUser.add(user)
+            }
+
+            return listUser;
+        }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,39 +81,41 @@ class FollowerFragment : Fragment() {
             else -> tvLabel.text = getString(R.string.content_tab_text, index) + " Follower " + username
         }
 
+        /*list.addAll(listUsers)
+        showRecyclerList()*/
     }
 
     private fun getFollowerUser(view: View, username: String) {
         showLoading(view, true)
-
         val client = ApiConfig.getApiService().getFollowersUsers(username)
-        client.enqueue(object : Callback<UserFollowerResponse> {
+        client.enqueue(object : Callback<List<UserFollowerResponseItem>> {
             override fun onResponse(
-                call: Call<UserFollowerResponse>,
-                response: Response<UserFollowerResponse>
+                call: Call<List<UserFollowerResponseItem>>,
+                response: Response<List<UserFollowerResponseItem>>
             ) {
                 showLoading(view, false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        setUserData(responseBody.userFollowerResponse)
+                        setUserData(responseBody)
                     }
+                    // Log.e(TAG, "onSuccess: OK OK ${response}")
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<UserFollowerResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserFollowerResponseItem>>, t: Throwable) {
                 showLoading(view, false)
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure2: ${t.message}")
             }
         })
     }
 
     private fun setUserData(items: List<UserFollowerResponseItem>) {
-        val listUser = ArrayList<User>()
+        // val listUser = ArrayList<User>()
         for (item in items) {
-            val user = User(
+            /*val user = User(
                 item.login,
                 0,
                 0,
@@ -97,14 +126,14 @@ class FollowerFragment : Fragment() {
                 "-"
             )
 
-            listUser.add(user)
-            //getDetailUser(item.login)
+            listUser.add(user)*/
+            getDetailUser(item.login)
         }
 
         list.clear()
-        list.addAll(listUser)
+        list.addAll(listUsers)
         showRecyclerList()
-        //listUsers.clear()
+        // listUsers.clear()
     }
 
     private fun getDetailUser(username: String) {
@@ -120,12 +149,12 @@ class FollowerFragment : Fragment() {
                         setDetailUserData(responseBody)
                     }
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<UserDetailResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure2: ${t.message}")
             }
         })
     }
