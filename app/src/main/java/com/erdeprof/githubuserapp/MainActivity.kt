@@ -1,5 +1,7 @@
 package com.erdeprof.githubuserapp
 
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -102,7 +104,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_settings -> {
-                val i = Intent(this, MenuActivity::class.java)
+                val i = Intent(this, SettingsActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            R.id.menu_favorite -> {
+                val i = Intent(this, FavoriteActivity::class.java)
                 startActivity(i)
                 return true
             }

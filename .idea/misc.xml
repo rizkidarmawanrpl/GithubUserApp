@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37777777777777777" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_detail_user.xml" value="0.22" />
+        <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_favorite.xml" value="0.22" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_menu.xml" value="0.22" />
+        <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_settings.xml" value="0.268359375" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/fragment_follower.xml" value="0.22" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/fragment_following.xml" value="0.22" />

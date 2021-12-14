@@ -12,22 +12,6 @@
         android:layout_height="wrap_content"
         tools:context=".DetailUserActivity">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/img_avatar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:civ_border_color="@color/orange_dark"
-            app:civ_border_width="4dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="@color/gray_light"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.199"
-            tools:src="@tools:sample/avatars" />
-
         <TextView
             android:id="@+id/tv_name"
             style="@style/TextContent"
@@ -129,23 +113,46 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="300dp" />
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/layout_deskripsi_user"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="355dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="730dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="15dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:src="@drawable/ic_baseline_favorite_24"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -159,16 +166,32 @@
             app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:tabTextColor="@android:color/white" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:civ_border_color="@color/orange_dark"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="@color/gray_light"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.199"
+            tools:src="@tools:sample/avatars" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_deskripsi_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabs"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

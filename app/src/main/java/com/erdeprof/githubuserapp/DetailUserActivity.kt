@@ -50,6 +50,12 @@ class DetailUserActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+
+        binding.fabFavorite.setOnClickListener { view ->
+            if (view.id == R.id.fab_favorite) {
+                Toast.makeText(this, "Fab Button", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setDetailUserData(detail: UserDetailResponse) {
@@ -77,13 +83,17 @@ class DetailUserActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
+
+        val favoriteItem = menu.findItem(R.id.menu_favorite)
+        favoriteItem.setVisible(false)
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_settings -> {
-                val i = Intent(this, MenuActivity::class.java)
+                val i = Intent(this, SettingsActivity::class.java)
                 startActivity(i)
                 return true
             }
