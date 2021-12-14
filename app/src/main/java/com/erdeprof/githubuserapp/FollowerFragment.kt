@@ -1,5 +1,6 @@
 package com.erdeprof.githubuserapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -78,6 +79,18 @@ class FollowerFragment : Fragment() {
         rvFollower.layoutManager = LinearLayoutManager(context)
         val listUserAdapter = ListUserAdapter(list)
         rvFollower.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                showSelectedUser(data)
+            }
+        })
+    }
+
+    private fun showSelectedUser(user: User) {
+        val activityDetailUser = Intent(context, DetailUserActivity::class.java)
+        activityDetailUser.putExtra(DetailUserActivity.EXTRA_USER, user)
+        startActivity(activityDetailUser)
     }
 
     private fun showLoading(view: View, isLoading: Boolean) {
