@@ -30,7 +30,7 @@ class MainViewModel : ViewModel() {
         get() = statusMessage
 
     fun getSearchUser(username: String) {
-        _isLoading.value = true
+        if (username?.length >= 1) _isLoading.value = true
         if (username?.length!! >= 4) {
             val client = ApiConfig.getApiService().getSearchUsers(username)
             client.enqueue(object : Callback<UserSearchResponse> {

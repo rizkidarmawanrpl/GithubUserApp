@@ -1,6 +1,7 @@
 package com.erdeprof.githubuserapp
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.erdeprof.githubuserapp.database.Favorite
@@ -76,6 +79,13 @@ class DetailUserActivity : AppCompatActivity() {
             isDelete = true
         } else {
             favorite = Favorite()
+        }
+
+        if (isDelete) {
+            binding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.orange_dark)
+        } else {
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.gray_light)
         }
 
         binding.fabFavorite.setOnClickListener { view ->

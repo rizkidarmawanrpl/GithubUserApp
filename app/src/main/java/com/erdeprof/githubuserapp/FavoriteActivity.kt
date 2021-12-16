@@ -26,6 +26,8 @@ class FavoriteActivity : AppCompatActivity() {
 
         setTitle(R.string.app_name_favorite)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val favoriteViewModel = obtainViewModel(this@FavoriteActivity)
         favoriteViewModel.getAllFavorites().observe(this, { favoriteList ->
             if (favoriteList != null) {
@@ -50,10 +52,6 @@ class FavoriteActivity : AppCompatActivity() {
         _activityFavoriteBinding = null
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
@@ -69,6 +67,10 @@ class FavoriteActivity : AppCompatActivity() {
             R.id.menu_settings -> {
                 val i = Intent(this, SettingsActivity::class.java)
                 startActivity(i)
+                return true
+            }
+            android.R.id.home -> {
+                finish()
                 return true
             }
             else -> return true
