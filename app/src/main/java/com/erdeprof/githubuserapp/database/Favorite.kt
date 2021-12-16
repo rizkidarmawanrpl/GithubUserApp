@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity
 @Parcelize
 data class Favorite(
     @PrimaryKey(autoGenerate = true)

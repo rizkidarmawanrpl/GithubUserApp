@@ -7,6 +7,7 @@
     <string name="menu_favorite">Menu Favorite</string>
     <string name="menu_settings_activity">Ini adalah menu settings</string>
     <string name="my_name">Jake Wharton</string>
+    <string name="dark_mode">Dark Mode</string>
     <string name="username_text">Cari berdasarkan username</string>
     <string name="search_hint">Masukkan username</string>
     <string name="username">@JakeWharton</string>
@@ -27,6 +28,17 @@
     <string name="content_tab_follower">This is Tab Follower</string>
     <string name="content_tab_following">This is Tab Following</string>
     <string name="content_tab_text">This is Tab %1$d</string>
+    <string name="delete">Hapus</string>
+    <string name="message_undo">Batalkan menghapus item sebelumnya?</string>
+    <string name="message_ok">OK</string>
+    <string name="cancel">Batal</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="message_cancel">Apakah Anda ingin membatalkan perubahan item favorite?</string>
+    <string name="message_delete">Apakah Anda yakin ingin menghapus item ini?</string>
+    <string name="added">Satu item berhasil difavoritkan</string>
+    <string name="changed">Satu item berhasil diubah</string>
+    <string name="deleted">Satu item berhasil dihapus dari daftar favorit</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>

@@ -29,6 +29,6 @@ interface ApiService {
     ): Call<List<UserFollowerResponseItem>>
 
     companion object {
-        private const val TOKEN = "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"
+        private const val TOKEN = "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"
     }
 }
