@@ -5,14 +5,18 @@ import androidx.room.*
 
 @Dao
 interface FavoriteDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(favorite: Favorite)
 
     @Update
     fun update(favorite: Favorite)
+
     @Delete
     fun delete(favorite: Favorite)
 
     @Query("SELECT * FROM favorite ORDER BY id ASC")
     fun getAllFavorites(): LiveData<List<Favorite>>
+
+    @Query("SELECT * FROM favorite WHERE username = :username LIMIT 1")
+    fun getByUsername(username: String): LiveData<List<Favorite>>
 }

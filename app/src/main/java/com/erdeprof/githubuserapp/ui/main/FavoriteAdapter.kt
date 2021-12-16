@@ -48,6 +48,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                 Glide.with(holder.itemView.context)
                     .load(favorite.avatar_url)
                     .into(imgItemAvatar)
+                tvItemFollowerValue.text = favorite.follower.toString()
+                tvItemFollowingValue.text = favorite.following.toString()
                 cardView.setOnClickListener {
                     val intent = Intent(it.context, DetailUserActivity::class.java)
                     intent.putExtra(DetailUserActivity.EXTRA_USER, user)

@@ -35,7 +35,7 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="message_cancel">Apakah Anda ingin membatalkan perubahan item favorite?</string>
-    <string name="message_delete">Apakah Anda yakin ingin menghapus item ini?</string>
+    <string name="message_delete">Apakah Anda yakin ingin menghapus item ini dari daftar favorite?</string>
     <string name="added">Satu item berhasil difavoritkan</string>
     <string name="changed">Satu item berhasil diubah</string>
     <string name="deleted">Satu item berhasil dihapus dari daftar favorit</string>

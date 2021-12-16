@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -18,6 +19,7 @@ import com.erdeprof.githubuserapp.database.Favorite
 import com.erdeprof.githubuserapp.databinding.ActivityDetailUserBinding
 import com.erdeprof.githubuserapp.ui.insert.FavoriteAddUpdateViewModel
 import com.erdeprof.githubuserapp.helper.ViewModelFactory
+import com.erdeprof.githubuserapp.ui.main.FavoriteViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
@@ -26,6 +28,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private var isDelete = false
     private var favorite: Favorite? = null
+    private var _favorite: Favorite? = null
 
     private var username: String = ""
     private var avatar: String = ""
@@ -72,20 +75,24 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-        favoriteAddUpdateViewModel = obtainViewModel(this@DetailUserActivity)
+        favoriteAddUpdateViewModel = obtainFavoriteAddUpdateViewModel(this@DetailUserActivity)
 
         favorite = intent.getParcelableExtra(EXTRA_FAVORITE)
+        _favorite = favorite
         if (favorite != null) {
             isDelete = true
+            changeFabFavorite()
         } else {
-            favorite = Favorite()
-        }
-
-        if (isDelete) {
-            binding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.orange_dark)
-        } else {
-            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.gray_light)
+            val favoriteViewModel = obtainFavoriteViewModel(this@DetailUserActivity)
+            favoriteViewModel.getByUsername(username).observe(this, { favoriteList ->
+                if (favoriteList.isNotEmpty()) {
+                    isDelete = true
+                    favorite = favoriteList[0]
+                } else {
+                    favorite = Favorite()
+                }
+                changeFabFavorite()
+            })
         }
 
         binding.fabFavorite.setOnClickListener { view ->
@@ -99,27 +106,41 @@ class DetailUserActivity : AppCompatActivity() {
                 if (isDelete) {
                     showAlertDialog(ALERT_DIALOG_DELETE)
                 } else {
+                    isDelete = true
                     favoriteAddUpdateViewModel.insert(favorite as Favorite)
+                    changeFabFavorite()
                     showToast(getString(R.string.added))
-                    finish()
+                    // finish()
                 }
-
-                // Toast.makeText(this, "Fab Button", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     override fun onBackPressed() {
-        if (isDelete) {
+        if (_favorite != null) {
             showAlertDialog(ALERT_DIALOG_CLOSE)
         } else {
             super.onBackPressed()
         }
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): FavoriteAddUpdateViewModel {
+    private fun changeFabFavorite() {
+        if (isDelete) {
+            binding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.orange_dark)
+        } else {
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.gray_light)
+        }
+    }
+
+    private fun obtainFavoriteAddUpdateViewModel(activity: AppCompatActivity): FavoriteAddUpdateViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory).get(FavoriteAddUpdateViewModel::class.java)
+    }
+
+    private fun obtainFavoriteViewModel(activity: AppCompatActivity): FavoriteViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(FavoriteViewModel::class.java)
     }
 
     private fun showToast(message: String) {

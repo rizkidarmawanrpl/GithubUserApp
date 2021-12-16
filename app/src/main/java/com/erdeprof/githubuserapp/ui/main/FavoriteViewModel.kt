@@ -10,4 +10,6 @@ class FavoriteViewModel(application: Application) : ViewModel() {
     private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
 
     fun getAllFavorites(): LiveData<List<Favorite>> = mFavoriteRepository.getAllFavorites()
+
+    fun getByUsername(username: String): LiveData<List<Favorite>> = mFavoriteRepository.getByUsername(username)
 }
