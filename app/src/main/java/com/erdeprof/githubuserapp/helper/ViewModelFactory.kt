@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.erdeprof.githubuserapp.MainViewModel
 import com.erdeprof.githubuserapp.ui.insert.FavoriteAddUpdateViewModel
 import com.erdeprof.githubuserapp.ui.main.FavoriteViewModel
+import com.erdeprof.githubuserapp.ui.main.SettingViewModel
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
