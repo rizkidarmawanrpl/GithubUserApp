@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.erdeprof.githubuserapp.R
+import com.erdeprof.githubuserapp.database.User
+import com.erdeprof.githubuserapp.database.UserFollowerResponseItem
 
 class FollowerFragment : Fragment() {
     private lateinit var rvFollower: RecyclerView
@@ -30,7 +33,8 @@ class FollowerFragment : Fragment() {
         rvFollower = view.findViewById(R.id.rv_follower)
         rvFollower.setHasFixedSize(true)
 
-        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
 
         mainViewModel.isLoading.observe(viewLifecycleOwner, {
             showLoading(view, it)

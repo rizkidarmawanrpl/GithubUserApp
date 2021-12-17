@@ -1,10 +1,8 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -12,14 +10,15 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.erdeprof.githubuserapp.R
+import com.erdeprof.githubuserapp.database.UserDetailResponse
 import com.erdeprof.githubuserapp.database.Favorite
+import com.erdeprof.githubuserapp.database.User
 import com.erdeprof.githubuserapp.databinding.ActivityDetailUserBinding
 import com.erdeprof.githubuserapp.ui.insert.FavoriteAddUpdateViewModel
 import com.erdeprof.githubuserapp.helper.ViewModelFactory
-import com.erdeprof.githubuserapp.ui.main.FavoriteViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
@@ -48,7 +47,8 @@ class DetailUserActivity : AppCompatActivity() {
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
         username = user.username.toString()
 
-        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
 
         mainViewModel.getDetailUser(username)
 
@@ -127,9 +127,13 @@ class DetailUserActivity : AppCompatActivity() {
     private fun changeFabFavorite() {
         if (isDelete) {
             binding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.orange_dark)
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this,
+                R.color.orange_dark
+            )
         } else {
-            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this, R.color.gray_light)
+            binding.fabFavorite.backgroundTintList =  AppCompatResources.getColorStateList(this,
+                R.color.gray_light
+            )
         }
     }
 

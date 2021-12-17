@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.erdeprof.githubuserapp.R
+import com.erdeprof.githubuserapp.database.User
 
 class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback

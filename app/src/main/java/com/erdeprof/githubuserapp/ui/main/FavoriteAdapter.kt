@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.erdeprof.githubuserapp.DetailUserActivity
-import com.erdeprof.githubuserapp.User
+import com.erdeprof.githubuserapp.database.User
 import com.erdeprof.githubuserapp.database.Favorite
 import com.erdeprof.githubuserapp.databinding.ItemFavoriteBinding
 import com.erdeprof.githubuserapp.helper.FavoriteDiffCallback

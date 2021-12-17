@@ -1,14 +1,20 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.database
 
 import com.google.gson.annotations.SerializedName
 
-data class UserFollowerResponse(
+data class UserSearchResponse(
 
-	@field:SerializedName("UserFollowerResponse")
-	val userFollowerResponse: List<UserFollowerResponseItem>
+	@field:SerializedName("total_count")
+	val totalCount: Int,
+
+	@field:SerializedName("incomplete_results")
+	val incompleteResults: Boolean,
+
+	@field:SerializedName("items")
+	val items: List<ItemsItem>
 )
 
-data class UserFollowerResponseItem(
+data class ItemsItem(
 
 	@field:SerializedName("gists_url")
 	val gistsUrl: String,
@@ -36,6 +42,9 @@ data class UserFollowerResponseItem(
 
 	@field:SerializedName("subscriptions_url")
 	val subscriptionsUrl: String,
+
+	@field:SerializedName("score")
+	val score: Double,
 
 	@field:SerializedName("received_events_url")
 	val receivedEventsUrl: String,

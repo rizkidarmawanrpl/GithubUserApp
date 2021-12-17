@@ -1,9 +1,12 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.erdeprof.githubuserapp.*
+import com.erdeprof.githubuserapp.database.*
+import com.erdeprof.githubuserapp.helper.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

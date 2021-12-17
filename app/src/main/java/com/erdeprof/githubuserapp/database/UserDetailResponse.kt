@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.database
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.erdeprof.githubuserapp.R
 import com.erdeprof.githubuserapp.databinding.ActivityFavoriteBinding
-import com.erdeprof.githubuserapp.ui.main.FavoriteAdapter
-import com.erdeprof.githubuserapp.ui.main.FavoriteViewModel
 import com.erdeprof.githubuserapp.helper.ViewModelFactory
 
 class FavoriteActivity : AppCompatActivity() {

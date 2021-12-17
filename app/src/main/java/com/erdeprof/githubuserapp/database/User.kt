@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.database
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

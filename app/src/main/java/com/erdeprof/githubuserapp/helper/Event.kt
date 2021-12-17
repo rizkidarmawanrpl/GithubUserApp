@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.helper
 
 open class Event<out T>(private val content: T) {
 

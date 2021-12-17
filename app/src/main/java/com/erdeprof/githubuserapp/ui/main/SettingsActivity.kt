@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.erdeprof.githubuserapp.R
 import com.erdeprof.githubuserapp.helper.SettingViewModelFactory
 import com.erdeprof.githubuserapp.ui.main.SettingPreferences
 import com.erdeprof.githubuserapp.ui.main.SettingViewModel

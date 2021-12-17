@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.database
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

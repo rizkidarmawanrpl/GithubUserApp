@@ -1,4 +1,4 @@
-package com.erdeprof.githubuserapp
+package com.erdeprof.githubuserapp.ui.main
 
 import android.app.PendingIntent
 import android.app.TaskStackBuilder
@@ -19,6 +19,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.ViewModelProvider
+import com.erdeprof.githubuserapp.R
+import com.erdeprof.githubuserapp.database.ItemsItem
+import com.erdeprof.githubuserapp.database.User
 import com.erdeprof.githubuserapp.databinding.ActivityMainBinding
 import com.erdeprof.githubuserapp.helper.SettingViewModelFactory
 import com.erdeprof.githubuserapp.ui.main.SettingPreferences
