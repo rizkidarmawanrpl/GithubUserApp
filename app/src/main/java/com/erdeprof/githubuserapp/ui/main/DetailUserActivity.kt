@@ -11,6 +11,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.erdeprof.githubuserapp.R
 import com.erdeprof.githubuserapp.database.UserDetailResponse
@@ -190,11 +191,18 @@ class DetailUserActivity : AppCompatActivity() {
         val tvLocation: TextView = findViewById(R.id.tv_location_value)
         val tvCompany: TextView = findViewById(R.id.tv_company_value)
 
+        val circularProgressDrawable = CircularProgressDrawable(this)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         Glide.with(this@DetailUserActivity)
             .load(detail.avatarUrl)
+            .placeholder(circularProgressDrawable)
+            .error(R.drawable.ic_baseline_error_42)
             .into(tvAvatar)
         tvName.text = detail.name
-        tvUsername.text = "@" + detail.login
+        tvUsername.text = getString(R.string.username, detail.login)
         tvRepository.text = detail.publicRepos.toString()
         tvFollower.text = detail.followers.toString()
         tvFollowing.text = detail.following.toString()
@@ -213,13 +221,13 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menu_settings -> {
                 val i = Intent(this, SettingsActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
     }
 

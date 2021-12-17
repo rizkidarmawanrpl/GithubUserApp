@@ -34,7 +34,7 @@ class MainViewModel : ViewModel() {
 
     fun getSearchUser(username: String) {
         if (username?.length >= 1) _isLoading.value = true
-        if (username?.length!! >= 4) {
+        if (username?.length >= 4) {
             val client = ApiConfig.getApiService().getSearchUsers(username)
             client.enqueue(object : Callback<UserSearchResponse> {
                 override fun onResponse(

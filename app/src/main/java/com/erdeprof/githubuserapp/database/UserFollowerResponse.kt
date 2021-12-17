@@ -2,12 +2,6 @@ package com.erdeprof.githubuserapp.database
 
 import com.google.gson.annotations.SerializedName
 
-data class UserFollowerResponse(
-
-	@field:SerializedName("UserFollowerResponse")
-	val userFollowerResponse: List<UserFollowerResponseItem>
-)
-
 data class UserFollowerResponseItem(
 
 	@field:SerializedName("gists_url")

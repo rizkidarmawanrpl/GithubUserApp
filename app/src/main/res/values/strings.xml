@@ -10,7 +10,7 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="username_text">Cari berdasarkan username</string>
     <string name="search_hint">Masukkan username</string>
-    <string name="username">@JakeWharton</string>
+    <string name="username">@%1$s</string>
     <string name="follower_text">Follower</string>
     <string name="following_text">Following</string>
     <string name="repository_text">Repository</string>
