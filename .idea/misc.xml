@@ -16,7 +16,12 @@
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/item_row_user.xml" value="0.16666666666666666" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/layout/layout_deskripsi_user.xml" value="0.22" />
         <entry key="..\:/ANDROID/GithubUserApp/app/src/main/res/menu/option_menu.xml" value="0.22" />
-        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/activity_detail_user.xml" value="0.33" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/drawable/ic_baseline_broken_image_42.xml" value="0.403125" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/drawable/ic_image_search_background.xml" value="0.23489583333333333" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.403125" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23489583333333333" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/drawable/textview_border.xml" value="0.403125" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/activity_detail_user.xml" value="0.25" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/activity_favorite.xml" value="0.33" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/activity_menu.xml" value="0.33" />
@@ -27,7 +32,12 @@
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/fragment_following.xml" value="0.38697916666666665" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/item_favorite.xml" value="0.33" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/item_row_user.xml" value="0.33" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/layout_data_empty.xml" value="0.33" />
         <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/layout_deskripsi_user.xml" value="0.38697916666666665" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/layout/textview_border.xml" value="0.38697916666666665" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/mipmap-anydpi-v26/ic_image_search.xml" value="0.23489583333333333" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23489583333333333" />
+        <entry key="..\:/D/DICODING/BelajarFundamentalAplikasiAndroid/GithubUserApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23489583333333333" />
       </map>
     </option>
   </component>

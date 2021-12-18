@@ -1,7 +1,5 @@
 package com.erdeprof.githubuserapp.ui.main
 
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -24,8 +22,6 @@ import com.erdeprof.githubuserapp.database.ItemsItem
 import com.erdeprof.githubuserapp.database.User
 import com.erdeprof.githubuserapp.databinding.ActivityMainBinding
 import com.erdeprof.githubuserapp.helper.SettingViewModelFactory
-import com.erdeprof.githubuserapp.ui.main.SettingPreferences
-import com.erdeprof.githubuserapp.ui.main.SettingViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -99,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         list.clear()
         list.addAll(listUser)
         showRecyclerList()
+        showDataEmpty()
     }
 
     private fun showRecyclerList() {
@@ -144,5 +141,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showDataEmpty() {
+        binding.include.tvDataEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 }

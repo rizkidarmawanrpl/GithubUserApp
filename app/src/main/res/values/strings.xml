@@ -39,6 +39,7 @@
     <string name="added">Satu item berhasil difavoritkan</string>
     <string name="changed">Satu item berhasil diubah</string>
     <string name="deleted">Satu item berhasil dihapus dari daftar favorit</string>
+    <string name="data_empty">Tidak ada data..</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>

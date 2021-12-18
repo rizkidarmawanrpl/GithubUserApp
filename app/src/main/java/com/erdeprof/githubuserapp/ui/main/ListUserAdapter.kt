@@ -29,8 +29,11 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (avatar, username) = listUser[position]
+
         Glide.with(holder.itemView.context)
             .load(avatar)
+            .placeholder(R.mipmap.ic_image_search)
+            .error(R.mipmap.ic_broken_image)
             .into(holder.imgAvatar)
         holder.tvName.text = username
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.erdeprof.githubuserapp.R
@@ -31,6 +33,7 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.getAllFavorites().observe(this, { favoriteList ->
             if (favoriteList != null) {
                 adapter.setListFavorites(favoriteList)
+                showDataEmpty(favoriteList.isEmpty())
             }
         })
 
@@ -62,17 +65,21 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menu_settings -> {
                 val i = Intent(this, SettingsActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
             android.R.id.home -> {
                 finish()
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
+    }
+
+    private fun showDataEmpty(isKosong: Boolean) {
+        binding?.include?.tvDataEmpty?.visibility = if (isKosong) View.VISIBLE else View.GONE
     }
 }

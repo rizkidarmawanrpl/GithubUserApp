@@ -11,7 +11,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.ViewModelProvider
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.erdeprof.githubuserapp.R
 import com.erdeprof.githubuserapp.database.UserDetailResponse
@@ -111,7 +110,6 @@ class DetailUserActivity : AppCompatActivity() {
                     favoriteAddUpdateViewModel.insert(favorite as Favorite)
                     changeFabFavorite()
                     showToast(getString(R.string.added))
-                    // finish()
                 }
             }
         }
@@ -191,15 +189,10 @@ class DetailUserActivity : AppCompatActivity() {
         val tvLocation: TextView = findViewById(R.id.tv_location_value)
         val tvCompany: TextView = findViewById(R.id.tv_company_value)
 
-        val circularProgressDrawable = CircularProgressDrawable(this)
-        circularProgressDrawable.strokeWidth = 5f
-        circularProgressDrawable.centerRadius = 30f
-        circularProgressDrawable.start()
-
         Glide.with(this@DetailUserActivity)
             .load(detail.avatarUrl)
-            .placeholder(circularProgressDrawable)
-            .error(R.drawable.ic_baseline_error_42)
+            .placeholder(R.mipmap.ic_image_search)
+            .error(R.mipmap.ic_broken_image)
             .into(tvAvatar)
         tvName.text = detail.name
         tvUsername.text = getString(R.string.username, detail.login)

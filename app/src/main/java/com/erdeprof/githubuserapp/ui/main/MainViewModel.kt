@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.erdeprof.githubuserapp.*
 import com.erdeprof.githubuserapp.database.*
 import com.erdeprof.githubuserapp.helper.Event
 import retrofit2.Call

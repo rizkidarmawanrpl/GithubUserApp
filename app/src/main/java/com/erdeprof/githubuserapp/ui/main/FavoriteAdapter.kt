@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.erdeprof.githubuserapp.R
 import com.erdeprof.githubuserapp.database.User
 import com.erdeprof.githubuserapp.database.Favorite
 import com.erdeprof.githubuserapp.databinding.ItemFavoriteBinding
@@ -23,6 +24,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         val binding = ItemFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return FavoriteViewHolder(binding)
     }
 
@@ -42,11 +44,15 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                     favorite.avatar_url,
                     favorite.username
                 )
+
                 listUser.add(user)
-                tvItemName.text = favorite.username
+
                 Glide.with(holder.itemView.context)
                     .load(favorite.avatar_url)
+                    .placeholder(R.mipmap.ic_image_search)
+                    .error(R.mipmap.ic_broken_image)
                     .into(imgItemAvatar)
+                tvItemName.text = favorite.username
                 tvItemFollowerValue.text = favorite.follower.toString()
                 tvItemFollowingValue.text = favorite.following.toString()
                 cardView.setOnClickListener {

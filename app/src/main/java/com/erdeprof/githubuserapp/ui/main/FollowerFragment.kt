@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,11 +42,11 @@ class FollowerFragment : Fragment() {
         })
 
         mainViewModel.userFollower.observe(viewLifecycleOwner, { userFollower ->
-            setUserData(userFollower)
+            setUserData(view, userFollower)
         })
 
         mainViewModel.userFollowing.observe(viewLifecycleOwner, { userFollowing ->
-            setUserData(userFollowing)
+            setUserData(view, userFollowing)
         })
 
         mainViewModel.message.observe(viewLifecycleOwner, {
@@ -64,7 +65,7 @@ class FollowerFragment : Fragment() {
         }
     }
 
-    private fun setUserData(items: List<UserFollowerResponseItem>) {
+    private fun setUserData(view: View, items: List<UserFollowerResponseItem>) {
         val listUser = ArrayList<User>()
         for (item in items) {
             val user = User(
@@ -77,6 +78,7 @@ class FollowerFragment : Fragment() {
         list.clear()
         list.addAll(listUser)
         showRecyclerList()
+        showDataEmpty(view)
     }
 
     private fun showRecyclerList() {
@@ -105,6 +107,11 @@ class FollowerFragment : Fragment() {
         } else {
             progressBar.visibility = View.GONE
         }
+    }
+
+    private fun showDataEmpty(view: View) {
+        val tvDataEmpty: TextView = view.findViewById(R.id.tv_data_empty)
+        tvDataEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
     }
 
     companion object {
