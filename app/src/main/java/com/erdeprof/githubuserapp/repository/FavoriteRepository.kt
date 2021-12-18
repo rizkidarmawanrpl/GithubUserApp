@@ -28,8 +28,4 @@ class FavoriteRepository(application: Application) {
     fun delete(favorite: Favorite) {
         executorService.execute { mFavoritesDao.delete(favorite) }
     }
-
-    fun update(favorite: Favorite) {
-        executorService.execute { mFavoritesDao.update(favorite) }
-    }
 }

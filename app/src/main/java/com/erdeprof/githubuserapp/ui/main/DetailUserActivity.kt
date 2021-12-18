@@ -115,14 +115,6 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if (_favorite != null) {
-            showAlertDialog(ALERT_DIALOG_CLOSE)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     private fun changeFabFavorite() {
         if (isDelete) {
             binding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -168,10 +160,13 @@ class DetailUserActivity : AppCompatActivity() {
             setCancelable(false)
             setPositiveButton(getString(R.string.yes)) { _, _ ->
                 if(!isDialogClose) {
+                    isDelete = false
                     favoriteAddUpdateViewModel.delete(favorite as Favorite)
+                    changeFabFavorite()
                     showToast(getString(R.string.deleted))
+                } else {
+                    finish()
                 }
-                finish()
             }
             setNegativeButton(getString(R.string.no)) { dialog, _ -> dialog.cancel() }
         }

@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp">
         <activity
-            android:name=".ui.main.FavoriteAddUpdateActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.main.FavoriteActivity"
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity">
